@@ -12,8 +12,8 @@ sources:
       identifier: false
 
     freshness:
-      warn_after: {count: 24, period: hour} # Si no se actualiza en 24 horas, te advierte
-      error_after: {count: 48, period: hour} # Si no se actualiza en 48 horas, marca como error
+      warn_after: {count: 15, period: hour} # Si no se actualiza en 24 horas, te advierte
+      error_after: {count: 25, period: hour} # Si no se actualiza en 48 horas, marca como error
 
     tables:
 
