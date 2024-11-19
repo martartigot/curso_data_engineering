@@ -24,13 +24,19 @@ sources:
             tests:
               - unique
               - not_null
-              - relationships:
-                  to: source('sql_server_db','products')
-                  field: product_id
           - name: ZIPCODE
+            tests:
+              - positive_values
+              - not_null
           - name: COUNTRY
+            tests:
+              - not_null
           - name: ADDRESS
+            tests:
+              - not_null
           - name: STATE
+            tests:
+              - not_null
           - name: _FIVETRAN_DELETED
           - name: _FIVETRAN_SYNCED
 
