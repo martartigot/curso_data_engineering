@@ -11,7 +11,7 @@ renamed_casted as (
     select
         _row,
         quantity,
-        month,
+        month as budget_date,
         product_id,
         _fivetran_synced
 
@@ -20,3 +20,4 @@ renamed_casted as (
 )
 
 select * from renamed_casted
+
