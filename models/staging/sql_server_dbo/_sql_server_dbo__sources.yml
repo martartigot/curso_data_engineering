@@ -4,7 +4,7 @@ sources:
 
   - name: sql_server_dbo # Nombre del origen
     schema: sql_server_dbo # Nombre del esquema
-    database: ALUMNO14_DEV_BRONZE_DB # Nombre de la base de datos
+    database: "{{ env_var('DBT_ENVIRONMENTS') }}_BRONZE_DB" # Nombre de la base de datos
 
     quoting:
       database: false
@@ -21,10 +21,22 @@ sources:
         loaded_at_field: _FIVETRAN_SYNCED
         columns:
           - name: ADDRESS_ID
+            tests:
+              - unique
+              - not_null
           - name: ZIPCODE
+            tests:
+              - positive_values
+              - not_null
           - name: COUNTRY
+            tests:
+              - not_null
           - name: ADDRESS
+            tests:
+              - not_null
           - name: STATE
+            tests:
+              - not_null
           - name: _FIVETRAN_DELETED
           - name: _FIVETRAN_SYNCED
 
@@ -82,12 +94,37 @@ sources:
 
       - name: promos
         loaded_at_field: _FIVETRAN_SYNCED
+        description: >
+          Data about promos in demo.
         columns:
           - name: PROMO_ID
+            description: >
+              ID of the promo.
+            tests:
+              - unique
+              - not_null
           - name: DISCOUNT
+            description: >
+              Number of order discount in euros.
+            tests:
+              - not_null
+              - positive_values
           - name: STATUS
+            description: >
+              Status of the promo (active or inactive).
+            tests:
+              - not_null
+              # accepted_values: ['inactive', 'active']
           - name: _FIVETRAN_DELETED
+            description: >
+              Date that the data was deleted.
+            tests:
+              - not_null
           - name: _FIVETRAN_SYNCED
+            description: >
+              Date that the data was loaded.
+            tests:
+              - not_null
 
       - name: users
         loaded_at_field: _FIVETRAN_SYNCED
