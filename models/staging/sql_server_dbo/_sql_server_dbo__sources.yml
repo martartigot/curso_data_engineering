@@ -4,7 +4,7 @@ sources:
 
   - name: sql_server_dbo # Nombre del origen
     schema: sql_server_dbo # Nombre del esquema
-    database: ALUMNO14_DEV_BRONZE_DB # Nombre de la base de datos
+    database: "{{ env_var('DBT_ENVIRONMENTS') }}_BRONZE_DB" # Nombre de la base de datos
 
     quoting:
       database: false
